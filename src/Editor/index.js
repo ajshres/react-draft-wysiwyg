@@ -87,8 +87,8 @@ export default class WysiwygEditor extends Component {
 
   static defaultProps = {
     toolbarOnFocus: false,
-    toolbarHidden: false,
-    stripPastedStyles: false,
+    toolbarHidden: true,
+    stripPastedStyles: true,
     localization: { locale: "en", translations: {} },
     customDecorators: []
   };
@@ -309,7 +309,7 @@ export default class WysiwygEditor extends Component {
 
   isImageAlignmentEnabled = () => this.state.toolbar.image.alignmentEnabled;
 
-  createEditorState = compositeDecorator => {
+  createEditorState = (compositeDecorator) => {
     let editorState;
     if (hasProperty(this.props, "editorState")) {
       if (this.props.editorState) {
