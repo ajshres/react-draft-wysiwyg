@@ -11,7 +11,7 @@ export default function addMention(
   trigger: string,
   suggestion: Object,
 ): void {
-  const trigger2 = '@';
+  const trigger2 = '';
   const { value, url, id } = suggestion;
 
   const entityKey = editorState
