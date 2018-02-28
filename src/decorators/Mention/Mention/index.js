@@ -8,9 +8,10 @@ class Mention {
     this.className = className;
   }
   getMentionComponent = () => {
-    const className = this.className;
+    const { className } = this;
     const MentionComponent = ({ entityKey, children, contentState }) => {
-      const { url, value } = contentState.getEntity(entityKey).getData();
+      const data = contentState.getEntity(entityKey).getData();
+      const { url, value } = data;
       return (
         <a href={url || value} className={classNames('rdw-mention-link', className)}>
           {children}
