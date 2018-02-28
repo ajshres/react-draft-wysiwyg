@@ -87,7 +87,7 @@ export default class WysiwygEditor extends Component {
 
   static defaultProps = {
     toolbarOnFocus: false,
-    toolbarHidden: true,
+    toolbarHidden: false,
     stripPastedStyles: true,
     localization: { locale: "en", translations: {} },
     customDecorators: []
