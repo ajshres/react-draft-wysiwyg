@@ -59,8 +59,6 @@ class Suggestion {
             preText = "↵" + trigger;
           }
         }
-        // debugger;
-        console.log(/( |\n|↵)@/g.exec(text), index);
         if (index >= 0) {
           const mentionText = text.substr(index + preText.length, text.length);
           const suggestionPresent =
