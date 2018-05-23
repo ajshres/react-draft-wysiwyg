@@ -1,4 +1,8 @@
 node_modules
 .DS_Store
 npm-debug.log
-# dist
+dist # if issue comment this line
+docs/.yalc/
+docs/yalc.lock
+stats.json
+report.html
