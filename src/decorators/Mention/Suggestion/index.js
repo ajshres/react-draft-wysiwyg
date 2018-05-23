@@ -53,6 +53,14 @@ class Suggestion {
           index = 0;
           preText = trigger;
         }
+        if (index === -1) {
+          index = text.lastIndexOf('\n' + trigger);
+          if (index !== -1) {
+            preText = "↵" + trigger;
+          }
+        }
+        // debugger;
+        console.log(/( |\n|↵)@/g.exec(text), index);
         if (index >= 0) {
           const mentionText = text.substr(index + preText.length, text.length);
           const suggestionPresent =
@@ -189,7 +197,10 @@ function getSuggestionComponent() {
     filteredSuggestions = [];
 
     filterSuggestions = (props) => {
-      const mentionText = props.children[0].props.text.substr(1);
+      let mentionText = props.children[0].props.text.substr(1);
+      if (mentionText.length && mentionText.indexOf('@') > -1) {
+        mentionText = props.children[0].props.text.substr(2);
+      }
       const suggestions = config.getSuggestions();
       this.filteredSuggestions =
         suggestions && suggestions.filter((suggestion) => {

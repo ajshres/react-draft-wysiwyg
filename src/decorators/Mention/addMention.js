@@ -21,13 +21,17 @@ export default function addMention(
   const selectedBlock = getSelectedBlock(editorState);
   const selectedBlockText = selectedBlock.getText();
   let { focusOffset } = editorState.getSelection();
-  const mentionIndex = (selectedBlockText.lastIndexOf(separator + trigger, focusOffset) || 0) + 1;
+  let mentionIndex = (selectedBlockText.lastIndexOf(separator + trigger, focusOffset) || 0) + 1;
+  if (mentionIndex === 0) {
+    mentionIndex = (selectedBlockText.lastIndexOf('\n' + trigger, focusOffset) || 0) + 1;
+  }
   let spaceAlreadyPresent = false;
   if (selectedBlockText.length === mentionIndex + 1) {
     focusOffset = selectedBlockText.length;
   }
   if (selectedBlockText[focusOffset] === ' ') {
     spaceAlreadyPresent = true;
+    focusOffset -= 1;
   }
   let updatedSelection = editorState.getSelection().merge({
     anchorOffset: mentionIndex,
